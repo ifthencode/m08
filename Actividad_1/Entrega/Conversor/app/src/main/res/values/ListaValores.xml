@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="ListaValores">
+        <item>Bit</item>
+        <item >Byte</item>
+        <item>Kilobyte</item>
+        <item>Megabyte</item>
+        <item>Gigabyte</item>
+        <item>Terabyte</item>
+        <item>Petabyte</item>
+        <item>Exabyte</item>
+        <item>Zetaxabyte</item>
+        <item>yottabite</item>
+        <item>Brontobyte</item>
+        <item>Geobyte</item>
+     </string-array>
+
+</resources>

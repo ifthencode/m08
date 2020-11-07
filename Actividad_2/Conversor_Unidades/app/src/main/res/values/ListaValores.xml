@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="ListaMedidas">
+        <item>Peso</item>
+        <item >Capacidad</item>
+        <item>Longitud</item>
+        <item>Datos</item>
+        <item>Temperatura</item>
+     </string-array>
+    <string-array name="ListaUnidades_datos">
+        <item>Byte</item>
+        <item>Kilobyte</item>
+        <item>Megabyte</item>
+        <item>Gigabyte</item>
+    </string-array>
+    <integer-array   name="valorunidades_datos">
+        <item>1</item>
+        <item>1024</item>
+        <item>1048576</item>
+        <item>1073741824</item>
+    </integer-array>
+    <string-array name="listaUnidades_peso">
+        <item>Miligramo</item>
+        <item>Gramo</item>
+        <item>Kilogramo</item>
+        <item>Tonelada</item>
+    </string-array>
+    <string-array name="listaUnidades_longitud">
+        <item>Milimetro</item>
+        <item>Centímetro</item>
+        <item>Metro</item>
+        <item>Kilometro</item>
+    </string-array>
+    <string-array name="listaUnidades_capacidad">
+        <item>Mililitro</item>
+        <item>Decilitro</item>
+        <item>litro</item>
+        <item>Hectolitro</item>
+    </string-array>
+    <string-array name="listaUnidades_temperatura">
+        <item>Celsius</item>
+        <item>Fahrenheit</item>
+        <item>Kelvin</item>
+    </string-array>
+    <integer-array name="valorUnidades_peso">
+        <item>1</item>
+        <item>1000</item>
+        <item>1000000</item>
+        <item>1000000000</item>
+    </integer-array>
+    <integer-array name="valorUnidades_longitud">
+        <item>1</item>
+        <item>100</item>
+        <item>1000</item>
+        <item>1000000</item>
+    </integer-array>
+    <integer-array name="valorUnidades_capacidad">
+        <item>1</item>
+        <item>10</item>
+        <item>1000</item>
+        <item>100000</item>
+    </integer-array>
+
+</resources>

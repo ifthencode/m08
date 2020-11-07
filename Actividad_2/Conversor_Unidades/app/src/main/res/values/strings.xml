@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Conversor de Unidades</string>
+    <string name="button_siguiente">Siguiente</string>
+    <string name="txv_pantalla_principal">Selecciona la medida a convertir</string>
+    <string name="button_convertir">Convertir</string>
+    <string name="txv_resultado">-----------------------------</string>
+    <string name="default_editText"></string>
+    <string name="txv_principal">Selecciona la medida...</string>
+    <string name="txt_origen">Convertir...</string>
+    <string name="txv_destino">Selecciona ...</string>
+    <string name="txv_cantidad">Introduce la cantidad a convertir</string>
+    <string name="txv_a">a...</string>
+    <string name="txv_vacio">"|----------->"</string>
+</resources>
