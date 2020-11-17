@@ -57,7 +57,8 @@ public class StorageUtil {
             "/data/sdext4",
             "/sdcard1",                         //Sony Xperia Z
             "/sdcard2",                         //HTC One M8s
-            "/storage/microsd"                  //ASUS ZenFone 2
+            "/storage/microsd" ,
+            "/externalstorage/"
     };
 
     /**

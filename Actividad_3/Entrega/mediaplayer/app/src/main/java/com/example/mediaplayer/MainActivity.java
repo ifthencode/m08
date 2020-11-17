@@ -80,7 +80,8 @@ public class MainActivity extends AppCompatActivity {
                 if (resultCode == RESULT_OK) {
                     // Get the Uri of the selected file
                     Uri uri = data.getData();
-                    Intent intent = new Intent(this,PantallaReproductor.class);
+                   Intent intent = new Intent(this,PantallaReproductor.class);
+
                     // Get the path
                    intent.putExtra(EXTRA_MESSAGE,uri.toString());
                     startActivity(intent);
@@ -92,4 +93,5 @@ public class MainActivity extends AppCompatActivity {
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
+
 }
