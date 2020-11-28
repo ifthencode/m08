@@ -21,21 +21,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-      /**  Field[] fields = R.raw.class.getFields();
-        Medidas[] medidas = new Medidas[fields.length];
-        Integer integer=0;
-        for (Field field : fields) {
-            try {
-                medidas[integer]=new Medidas (integer,"Byte", field.getInt(field));
-                integer++;
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            }
-        }
-        // Definimos el adaptador para crear la lista
-        Adaptador adap=new Adaptador(medidas,this);
-        ListView lista=(ListView) findViewById( R.id.listaDesplegable);
-        lista.setAdapter(adap);**/
+
         showFileChooser();
     }
     public void openDirectory(Uri uriToLoad) {
@@ -46,11 +32,7 @@ public class MainActivity extends AppCompatActivity {
         // directory.
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
-        // Optionally, specify a URI for the directory that should be opened in
-        // the system file picker when it loads.
-      //  intent.putExtra(DocumentsContract.EXTRA_INITIAL_URI, uriToLoad);
 
-      //  startActivityForResult(intent, your-request-code);
 
     }
     private static final int FILE_SELECT_CODE = 0;
@@ -69,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
                     FILE_SELECT_CODE);
         } catch (android.content.ActivityNotFoundException ex) {
             // Potentially direct the user to the Market with a Dialog
-            Toast.makeText(this, "Please install a File Manager.",
+           Toast.makeText(this, "Please install a File Manager.",
                     Toast.LENGTH_SHORT).show();
         }
     }
@@ -82,12 +64,9 @@ public class MainActivity extends AppCompatActivity {
                     Uri uri = data.getData();
                    Intent intent = new Intent(this,PantallaReproductor.class);
 
-                    // Get the path
                    intent.putExtra(EXTRA_MESSAGE,uri.toString());
                     startActivity(intent);
-                    // Get the file instance
-                    // File file = new File(path);
-                    // Initiate the upload
+
                 }
                 break;
         }
