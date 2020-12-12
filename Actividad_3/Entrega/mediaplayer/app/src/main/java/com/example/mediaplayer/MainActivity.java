@@ -15,7 +15,12 @@ import android.widget.Toast;
 import java.lang.reflect.Field;
 
 public class MainActivity extends AppCompatActivity {
+    //Iniciamos la variables necesarias
     public static final String EXTRA_MESSAGE = "com.example.mediaplayer.MESSAGE";
+    private static final int FILE_SELECT_CODE = 0;
+
+    //Sobrecargamos el metodo y llamos a showFileChooser(); para que inicie el selector de archivos del
+    //frameworf SAF
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,27 +29,18 @@ public class MainActivity extends AppCompatActivity {
 
         showFileChooser();
     }
-    public void openDirectory(Uri uriToLoad) {
-        // Choose a directory using the system's file picker.
-        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
-
-        // Provide read access to files and sub-directories in the user-selected
-        // directory.
-        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
 
-
-    }
-    private static final int FILE_SELECT_CODE = 0;
-
+     //Se implementa el acceso a almacenamiento
     private void showFileChooser() {
+        //Se implementa desde un Intent el acceso al almacenamiento
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("*/*");
          //Filtro los contenidos que por tipo  video
         String[] mimetypes = { "video/*"};
         intent.putExtra(Intent.EXTRA_MIME_TYPES, mimetypes);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
-
+        //Se realiza una captura en caso de no exista un Gestor de archivos
         try {
             startActivityForResult(
                     Intent.createChooser(intent, "Select a File to Upload"),
@@ -55,16 +51,18 @@ public class MainActivity extends AppCompatActivity {
                     Toast.LENGTH_SHORT).show();
         }
     }
+    //Se sobrecarga el método para recibir el uri del archivo seleccionado
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
             case FILE_SELECT_CODE:
                 if (resultCode == RESULT_OK) {
-                    // Get the Uri of the selected file
+                    //Se obtiene el uri del archivo
                     Uri uri = data.getData();
+                    //Se envía el uri a la pantalla de reproduccion con un intent
                    Intent intent = new Intent(this,PantallaReproductor.class);
-
-                   intent.putExtra(EXTRA_MESSAGE,uri.toString());
+                    intent.putExtra(EXTRA_MESSAGE,uri.toString());
+                    //Se inicia la pantalla de reproduccion
                     startActivity(intent);
 
                 }
