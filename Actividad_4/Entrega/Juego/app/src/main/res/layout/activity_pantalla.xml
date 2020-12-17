@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
-    <!-- Se define un elemento vista asociado al java Pantalla
+    tools:context=".ActivityPantalla">
     <view
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -14,17 +12,5 @@
         android:id="@+id/Pantalla"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        /> -->
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="148dp"
-        tools:layout_editor_absoluteY="278dp"
-        android:onClick="onClickIniciar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>
