@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Juego</string>
+    <string name="tvSelDificultad">Selecciona la dificultad</string>
+    <string name="btStart">Start</string>
+    <string-array name="dificultad">
+        <item>Facil</item>
+        <item>Dificil</item>
+        <item>Muy dificil</item>
+    </string-array>
 </resources>

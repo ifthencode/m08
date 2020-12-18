@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.widget.Spinner;
 
 import java.util.Random;
 import java.util.Timer;
@@ -78,6 +79,8 @@ public class MainActivity extends AppCompatActivity {
     public void onClickIniciar (View view) {
         Intent intent = new Intent(this, ActivityPantalla.class);
       //  intent.putExtra("id",idEmpresa);
+        Spinner sp=(Spinner) findViewById(R.id.spinner);
+        intent.putExtra("dificultad",sp.getSelectedItem().toString());
         startActivity(intent);
     }
 

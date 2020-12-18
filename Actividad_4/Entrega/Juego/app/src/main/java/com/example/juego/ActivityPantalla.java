@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.ViewTreeObserver;
+import android.widget.Switch;
 
 import java.util.Random;
 import java.util.Timer;
@@ -14,6 +15,7 @@ public class ActivityPantalla extends AppCompatActivity {
     public Juego juego;
     private Handler handler = new Handler();
     private Random random = new Random();
+    String dificultad;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         juego = new Juego(this);
@@ -22,6 +24,9 @@ public class ActivityPantalla extends AppCompatActivity {
         setContentView(R.layout.activity_pantalla);
         juego = (Juego) findViewById(R.id.Pantalla);
         ViewTreeObserver obs = juego.getViewTreeObserver();
+        Bundle parametros = this.getIntent().getExtras();
+        dificultad=parametros.getString("dificultad");
+
         obs.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
@@ -56,10 +61,29 @@ public class ActivityPantalla extends AppCompatActivity {
                 handler.post(new Runnable() {
                     public void run() {
                         //Cada x segundos movemos la moneda 10dp
-                        juego.posMonedaY1+=10;
-                        juego.posMonedaY2+=10;
-                        juego.posMonedaY3+=10;
-                        juego.posMonedaY4+=10;
+                        switch(dificultad){
+                            case "Facil":
+                                juego.posMonedaY1+=10;
+                                juego.posMonedaY2+=10;
+                                juego.posMonedaY3+=10;
+                                juego.posMonedaY4+=10;
+                                break;
+                            case "Dificil":
+                                juego.posMonedaY1+=20;
+                                juego.posMonedaY2+=20;
+                                juego.posMonedaY3+=20;
+                                juego.posMonedaY4+=20;
+                                break;
+
+                            case "Muy dificil":
+                                juego.posMonedaY1+=30;
+                                juego.posMonedaY2+=30;
+                                juego.posMonedaY3+=30;
+                                juego.posMonedaY4+=30;
+                                break;
+
+                        }
+
                         //   juego.posMonedaX+=random.nextInt(15);
                         //   juego.bmpMoneda2= BitmapFactory.decodeResource(getResources(),
                         //          R.drawable.moneda1);
