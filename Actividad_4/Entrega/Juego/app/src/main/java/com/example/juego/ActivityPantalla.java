@@ -1,11 +1,18 @@
 package com.example.juego;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.view.ViewTreeObserver;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import java.util.Random;
 import java.util.Timer;
@@ -16,6 +23,7 @@ public class ActivityPantalla extends AppCompatActivity {
     private Handler handler = new Handler();
     private Random random = new Random();
     String dificultad;
+    Timer timer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         juego = new Juego(this);
@@ -26,7 +34,9 @@ public class ActivityPantalla extends AppCompatActivity {
         ViewTreeObserver obs = juego.getViewTreeObserver();
         Bundle parametros = this.getIntent().getExtras();
         dificultad=parametros.getString("dificultad");
-
+        final long[] fin = new long[1];
+        long inicio = System.currentTimeMillis();
+        Intent intent = new Intent(this,MainActivity.class);
         obs.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
@@ -38,7 +48,7 @@ public class ActivityPantalla extends AppCompatActivity {
                 juego.posY=juego.alto-75;
 
                 juego.radio=75;
-
+//
                 juego.posMonedaY1=250;
                 juego.posMonedaX1=190;
 
@@ -54,7 +64,7 @@ public class ActivityPantalla extends AppCompatActivity {
             }
         });
         //Ejecutamos cada 20 milisegundos
-        Timer timer = new Timer();
+        timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
@@ -83,18 +93,30 @@ public class ActivityPantalla extends AppCompatActivity {
                                 break;
 
                         }
-
                         //   juego.posMonedaX+=random.nextInt(15);
                         //   juego.bmpMoneda2= BitmapFactory.decodeResource(getResources(),
                         //          R.drawable.moneda1);
                         //     juego.posMonedaX+=random.nextInt(15);
                         //refreca la pantalla y llama al draw
+                        juego.tiempo=(int)((fin[0] -inicio)/1000);
+                        fin[0] = System.currentTimeMillis();
+
+                        if(fin[0] -inicio>=10000){
+                           cancel();
+                            Toast toast1 =
+                                    Toast.makeText(getApplicationContext(),
+                                            "El juego ha terminado. Tu puntuación es :"+juego.puntuacion, Toast.LENGTH_SHORT);
+
+                            toast1.show();
+                        }
                         juego.invalidate();
                     }
                 });
             }
         }, 0, 20);
+
     }
 
 
 }
+
