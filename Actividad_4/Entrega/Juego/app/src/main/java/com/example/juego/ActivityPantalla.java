@@ -26,21 +26,27 @@ public class ActivityPantalla extends AppCompatActivity {
     Timer timer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //Inicio la vista de juego
         juego = new Juego(this);
         setContentView(juego);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla);
+        //defino la vista juego sobre el visor
         juego = (Juego) findViewById(R.id.Pantalla);
         ViewTreeObserver obs = juego.getViewTreeObserver();
+
+        //Obtengo los parametros de dificultad
         Bundle parametros = this.getIntent().getExtras();
         dificultad=parametros.getString("dificultad");
+
+        //Declaro e inicio las variables para contar el tiempo discurrido
         final long[] fin = new long[1];
         long inicio = System.currentTimeMillis();
         Intent intent = new Intent(this,MainActivity.class);
         obs.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
-                // Sólo se puede averiguar el ancho y alto una vez ya se ha pintado el
+                // Establezco las posiciones y valores iniciales
 
                 juego.ancho = juego.getWidth();
                 juego.alto = juego.getHeight();
@@ -53,14 +59,14 @@ public class ActivityPantalla extends AppCompatActivity {
                 juego.posMonedaX1=190;
 
                 juego.posMonedaY2=250;
-                juego.posMonedaX2= 190;
+                juego.posMonedaX2= 340;
 
                 juego.posMonedaY3=250;
-                juego.posMonedaX3= 190;
+                juego.posMonedaX3= 490;
 
                 juego.posMonedaY4=250;
-                juego.posMonedaX4= 190;
-                //   juego.posMonedaY=550;
+                juego.posMonedaX4= 640;
+
             }
         });
         //Ejecutamos cada 20 milisegundos
@@ -70,7 +76,7 @@ public class ActivityPantalla extends AppCompatActivity {
             public void run() {
                 handler.post(new Runnable() {
                     public void run() {
-                        //Cada x segundos movemos la moneda 10dp
+                        //Cada x segundos movemos la moneda Xdp en función de la dificultad
                         switch(dificultad){
                             case "Facil":
                                 juego.posMonedaY1+=10;
@@ -93,21 +99,31 @@ public class ActivityPantalla extends AppCompatActivity {
                                 break;
 
                         }
-                        //   juego.posMonedaX+=random.nextInt(15);
-                        //   juego.bmpMoneda2= BitmapFactory.decodeResource(getResources(),
-                        //          R.drawable.moneda1);
-                        //     juego.posMonedaX+=random.nextInt(15);
-                        //refreca la pantalla y llama al draw
-                        juego.tiempo=(int)((fin[0] -inicio)/1000);
+                        //Calculo el tiempo transcurrido
                         fin[0] = System.currentTimeMillis();
 
+                        juego.tiempo=(int)((fin[0] -inicio)/1000);
+
+                        //Una vez se cumplen 10 segundo se para el hilo, aparece un toast con un mensaje y se resetean las posiciones de los elementos
+                        //Se para también la reproducción del sonido
                         if(fin[0] -inicio>=10000){
                            cancel();
+                           //Mensaje
                             Toast toast1 =
                                     Toast.makeText(getApplicationContext(),
                                             "El juego ha terminado. Tu puntuación es :"+juego.puntuacion, Toast.LENGTH_SHORT);
 
                             toast1.show();
+
+                            //Se detiene la reproducción del sonido
+                            juego.gameloop.stop();
+
+                            //Se recolocan los elementos al finalizar
+                            juego.posMonedaY1+=juego.alto;
+                            juego.posMonedaY2+=juego.alto;
+                            juego.posMonedaY3+=juego.alto;
+                            juego.posMonedaY4+=juego.alto;
+
                         }
                         juego.invalidate();
                     }

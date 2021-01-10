@@ -6,15 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <!-- Se define un elemento vista asociado al java Pantalla
-    <view
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        class="com.example.juego.Juego"
-        android:id="@+id/Pantalla"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        /> -->
+
 
     <Button
         android:id="@+id/button"
